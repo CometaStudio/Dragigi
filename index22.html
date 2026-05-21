@@ -1,0 +1,1369 @@
+<!-- Calendario Editorial Dra. Giselle Castillo - Cometa Producciones -->
+<style>
+  :root {
+    --bg: #FAF8F4;
+    --ink: #1A1A1A;
+    --ink-soft: #4A4A4A;
+    --ink-muted: #8A8A8A;
+    --line: #E8E4DC;
+    --line-strong: #D4CFC2;
+    --accent: #C44536;
+    --accent-soft: #F4E3DF;
+    --gold: #B8935A;
+    --green: #4A7C59;
+    --green-soft: #E1ECE3;
+    --card: #FFFFFF;
+    --shadow-sm: 0 1px 2px rgba(26,26,26,0.04), 0 2px 8px rgba(26,26,26,0.04);
+    --shadow-md: 0 4px 12px rgba(26,26,26,0.06), 0 12px 32px rgba(26,26,26,0.05);
+    --shadow-lg: 0 16px 48px rgba(26,26,26,0.12);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body, html { background: transparent; }
+
+  .app {
+    font-family: 'Inter', -apple-system, sans-serif;
+    color: var(--ink);
+    min-height: 100vh;
+    background:
+      radial-gradient(circle at 10% 0%, rgba(196,69,54,0.04) 0%, transparent 40%),
+      radial-gradient(circle at 90% 100%, rgba(184,147,90,0.05) 0%, transparent 50%),
+      var(--bg);
+    padding: 32px 24px 64px;
+  }
+
+  .display { font-family: 'Fraunces', 'Georgia', serif; letter-spacing: -0.02em; }
+  .mono { font-family: 'JetBrains Mono', monospace; }
+
+  /* HEADER */
+  .header {
+    max-width: 1280px;
+    margin: 0 auto 32px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 24px;
+    flex-wrap: wrap;
+    padding-bottom: 28px;
+    border-bottom: 1px solid var(--line);
+  }
+  .header-left h1 {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(28px, 4vw, 44px);
+    font-weight: 500;
+    line-height: 1.05;
+    letter-spacing: -0.025em;
+  }
+  .header-left h1 em {
+    font-style: italic;
+    color: var(--accent);
+    font-weight: 400;
+  }
+  .header-left .subtitle {
+    margin-top: 8px;
+    color: var(--ink-muted);
+    font-size: 13px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+  .header-right {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 11px 18px;
+    border-radius: 10px;
+    border: 1px solid var(--line-strong);
+    background: var(--card);
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--ink);
+    cursor: pointer;
+    transition: all 0.18s ease;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+  .btn:hover { transform: translateY(-1px); box-shadow: var(--shadow-sm); border-color: var(--ink); }
+  .btn-primary {
+    background: var(--ink);
+    color: #fff;
+    border-color: var(--ink);
+  }
+  .btn-primary:hover { background: var(--accent); border-color: var(--accent); }
+  .btn-ghost { background: transparent; border-color: transparent; padding: 8px 12px; }
+  .btn-ghost:hover { background: var(--line); border-color: transparent; }
+  .btn-sm { padding: 7px 12px; font-size: 12px; }
+  .btn-icon {
+    width: 34px; height: 34px; padding: 0; justify-content: center;
+    border-radius: 8px;
+  }
+
+  /* STATS BAR */
+  .stats {
+    max-width: 1280px;
+    margin: 0 auto 28px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 12px;
+  }
+  .stat {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 16px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .stat-num {
+    font-family: 'Fraunces', serif;
+    font-size: 32px;
+    font-weight: 500;
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+  .stat-label {
+    font-size: 11px;
+    color: var(--ink-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: 500;
+  }
+  .stat-accent .stat-num { color: var(--accent); }
+
+  /* TABS */
+  .tabs {
+    max-width: 1280px;
+    margin: 0 auto 24px;
+    display: flex;
+    gap: 4px;
+    border-bottom: 1px solid var(--line);
+    flex-wrap: wrap;
+  }
+  .tab {
+    padding: 12px 18px;
+    border: none;
+    background: transparent;
+    font-family: inherit;
+    font-size: 14px;
+    color: var(--ink-muted);
+    cursor: pointer;
+    position: relative;
+    font-weight: 500;
+    transition: color 0.15s;
+  }
+  .tab:hover { color: var(--ink); }
+  .tab.active {
+    color: var(--ink);
+  }
+  .tab.active::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--accent);
+  }
+  .tab .count {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 20px;
+    height: 20px;
+    padding: 0 6px;
+    margin-left: 6px;
+    background: var(--line);
+    color: var(--ink-soft);
+    border-radius: 10px;
+    font-size: 11px;
+    font-weight: 600;
+  }
+  .tab.active .count { background: var(--accent); color: #fff; }
+
+  /* SEARCH */
+  .search-row {
+    max-width: 1280px;
+    margin: 0 auto 24px;
+    display: flex;
+    gap: 12px;
+    align-items: center;
+  }
+  .search-box {
+    flex: 1;
+    position: relative;
+  }
+  .search-box input {
+    width: 100%;
+    padding: 12px 16px 12px 42px;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    background: var(--card);
+    font-family: inherit;
+    font-size: 14px;
+    color: var(--ink);
+    transition: border-color 0.15s;
+  }
+  .search-box input:focus {
+    outline: none;
+    border-color: var(--ink);
+  }
+  .search-box svg {
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--ink-muted);
+  }
+
+  /* CARDS GRID */
+  .cards {
+    max-width: 1280px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+    gap: 18px;
+  }
+
+  .card {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 22px;
+    transition: all 0.22s ease;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    position: relative;
+    overflow: hidden;
+  }
+  .card:hover {
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
+    border-color: var(--line-strong);
+  }
+  .card.today {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px var(--accent-soft);
+  }
+  .card.today::before {
+    content: 'HOY';
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    background: var(--accent);
+    color: #fff;
+    padding: 4px 9px;
+    border-radius: 6px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    z-index: 2;
+  }
+  .card.published { opacity: 0.78; }
+  .card.published:hover { opacity: 1; }
+
+  .card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  .video-num {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 13px;
+    color: var(--ink-muted);
+    letter-spacing: 0.04em;
+  }
+  .card-actions {
+    display: flex;
+    gap: 4px;
+  }
+  .card-actions .btn-ghost { padding: 6px; }
+
+  .card-title {
+    font-family: 'Fraunces', serif;
+    font-size: 22px;
+    font-weight: 500;
+    line-height: 1.2;
+    letter-spacing: -0.015em;
+    color: var(--ink);
+  }
+
+  .date-block {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    padding: 14px 0;
+    border-top: 1px dashed var(--line);
+    border-bottom: 1px dashed var(--line);
+  }
+  .date-day {
+    font-family: 'Fraunces', serif;
+    font-size: 36px;
+    font-weight: 500;
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+  .date-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .date-month {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--ink);
+    text-transform: lowercase;
+  }
+  .date-weekday {
+    font-size: 11px;
+    color: var(--ink-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: 500;
+  }
+  .date-time {
+    margin-left: auto;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    color: var(--ink-soft);
+    background: var(--bg);
+    padding: 5px 9px;
+    border-radius: 6px;
+    border: 1px solid var(--line);
+  }
+
+  .platforms {
+    display: flex;
+    gap: 6px;
+  }
+  .platform {
+    width: 26px;
+    height: 26px;
+    border-radius: 6px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg);
+    border: 1px solid var(--line);
+    color: var(--ink-soft);
+  }
+  .platform svg { width: 14px; height: 14px; }
+
+  .status-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+  }
+  .status {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 10px;
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+  }
+  .status.programado {
+    background: var(--bg);
+    color: var(--ink-soft);
+    border: 1px solid var(--line);
+  }
+  .status.hoy {
+    background: var(--accent-soft);
+    color: var(--accent);
+  }
+  .status.publicado {
+    background: var(--green-soft);
+    color: var(--green);
+  }
+  .status-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: currentColor;
+  }
+
+  .card-buttons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+  .card-buttons .btn { justify-content: center; }
+
+  .copy-section {
+    border-top: 1px solid var(--line);
+    padding-top: 14px;
+    margin-top: 0;
+  }
+  .copy-toggle {
+    width: 100%;
+    background: transparent;
+    border: none;
+    padding: 0;
+    font-family: inherit;
+    font-size: 12px;
+    color: var(--ink-soft);
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .copy-toggle:hover { color: var(--ink); }
+  .copy-toggle svg { transition: transform 0.2s; }
+  .copy-toggle.open svg { transform: rotate(180deg); }
+
+  .copy-body {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+  }
+  .copy-body.open { max-height: 800px; padding-top: 12px; }
+  .copy-text {
+    white-space: pre-wrap;
+    font-size: 13px;
+    line-height: 1.6;
+    color: var(--ink-soft);
+    background: var(--bg);
+    padding: 14px;
+    border-radius: 8px;
+    border: 1px solid var(--line);
+  }
+  .copy-actions {
+    display: flex;
+    gap: 8px;
+    margin-top: 10px;
+  }
+  .hashtags {
+    margin-top: 8px;
+    font-size: 12px;
+    color: var(--gold);
+    line-height: 1.7;
+    word-break: break-word;
+  }
+
+  /* CALENDAR VIEW */
+  .calendar {
+    max-width: 1280px;
+    margin: 0 auto;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 24px;
+  }
+  .cal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  .cal-month {
+    font-family: 'Fraunces', serif;
+    font-size: 24px;
+    font-weight: 500;
+    letter-spacing: -0.02em;
+  }
+  .cal-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 4px;
+  }
+  .cal-dow {
+    text-align: center;
+    font-size: 11px;
+    color: var(--ink-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: 600;
+    padding: 8px 4px;
+  }
+  .cal-day {
+    aspect-ratio: 1;
+    min-height: 80px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    background: var(--card);
+    transition: all 0.15s;
+  }
+  .cal-day.empty { border-color: transparent; background: transparent; }
+  .cal-day.today { background: var(--accent-soft); border-color: var(--accent); }
+  .cal-day-num {
+    font-family: 'Fraunces', serif;
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--ink);
+  }
+  .cal-day.today .cal-day-num { color: var(--accent); }
+  .cal-event {
+    font-size: 10px;
+    background: var(--ink);
+    color: #fff;
+    padding: 3px 6px;
+    border-radius: 4px;
+    cursor: pointer;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    line-height: 1.3;
+  }
+  .cal-event.pub { background: var(--green); }
+  .cal-event:hover { opacity: 0.85; }
+
+  /* EMPTY */
+  .empty-state {
+    max-width: 1280px;
+    margin: 60px auto;
+    text-align: center;
+    color: var(--ink-muted);
+    padding: 40px;
+  }
+  .empty-state h3 {
+    font-family: 'Fraunces', serif;
+    font-size: 24px;
+    color: var(--ink);
+    margin-bottom: 8px;
+    font-weight: 500;
+  }
+
+  /* MODAL */
+  .modal-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(26,26,26,0.5);
+    backdrop-filter: blur(6px);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    z-index: 100;
+    animation: fadein 0.2s ease;
+  }
+  .modal-backdrop.open { display: flex; }
+  @keyframes fadein { from { opacity: 0; } to { opacity: 1; } }
+
+  .modal {
+    background: var(--card);
+    border-radius: 18px;
+    width: 100%;
+    max-width: 600px;
+    max-height: 90vh;
+    overflow-y: auto;
+    padding: 32px;
+    box-shadow: var(--shadow-lg);
+    animation: slideup 0.25s ease;
+  }
+  @keyframes slideup { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+
+  .modal h2 {
+    font-family: 'Fraunces', serif;
+    font-size: 26px;
+    font-weight: 500;
+    margin-bottom: 6px;
+    letter-spacing: -0.02em;
+  }
+  .modal .modal-sub {
+    color: var(--ink-muted);
+    font-size: 13px;
+    margin-bottom: 24px;
+  }
+
+  .field {
+    margin-bottom: 16px;
+  }
+  .field label {
+    display: block;
+    font-size: 12px;
+    color: var(--ink-soft);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 6px;
+  }
+  .field input, .field textarea, .field select {
+    width: 100%;
+    padding: 11px 14px;
+    border: 1px solid var(--line);
+    border-radius: 9px;
+    font-family: inherit;
+    font-size: 14px;
+    background: var(--bg);
+    color: var(--ink);
+    transition: border-color 0.15s;
+  }
+  .field input:focus, .field textarea:focus, .field select:focus {
+    outline: none;
+    border-color: var(--ink);
+    background: var(--card);
+  }
+  .field textarea { resize: vertical; min-height: 120px; font-family: inherit; line-height: 1.6; }
+  .field-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  .field-help {
+    font-size: 11px;
+    color: var(--ink-muted);
+    margin-top: 4px;
+    line-height: 1.4;
+  }
+  .checkbox-group {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .checkbox-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 14px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: var(--bg);
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.15s;
+    user-select: none;
+  }
+  .checkbox-label input { display: none; }
+  .checkbox-label.checked {
+    background: var(--ink);
+    color: #fff;
+    border-color: var(--ink);
+  }
+  .char-counter {
+    font-size: 11px;
+    color: var(--ink-muted);
+    text-align: right;
+    margin-top: 4px;
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  .modal-footer {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin-top: 24px;
+    padding-top: 20px;
+    border-top: 1px solid var(--line);
+  }
+
+  /* TOAST */
+  .toast {
+    position: fixed;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%) translateY(20px);
+    background: var(--ink);
+    color: #fff;
+    padding: 12px 20px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 500;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.25s ease;
+    z-index: 200;
+    box-shadow: var(--shadow-lg);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .toast.show {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+  .toast.success { background: var(--green); }
+  .toast.error { background: var(--accent); }
+
+  /* MOBILE */
+  @media (max-width: 640px) {
+    .app { padding: 20px 16px 40px; }
+    .header { flex-direction: column; align-items: flex-start; }
+    .cards { grid-template-columns: 1fr; }
+    .card-buttons { grid-template-columns: 1fr; }
+    .field-row { grid-template-columns: 1fr; }
+    .modal { padding: 24px 20px; }
+    .stats { grid-template-columns: 1fr 1fr; }
+    .cal-day { min-height: 56px; padding: 4px; }
+    .cal-day-num { font-size: 14px; }
+    .cal-event { font-size: 9px; padding: 2px 4px; }
+  }
+</style>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<div class="app">
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="header-left">
+      <h1>Calendario <em>Redes Sociales</em></h1>
+      <div class="subtitle">Dra. Giselle Castillo · Cometa Producciones</div>
+    </div>
+    <div class="header-right">
+      <button class="btn" id="btnExport">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Exportar CSV
+      </button>
+      <button class="btn btn-primary" id="btnAdd">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        Agregar video
+      </button>
+    </div>
+  </header>
+
+  <!-- STATS -->
+  <div class="stats" id="stats"></div>
+
+  <!-- TABS -->
+  <nav class="tabs" id="tabs">
+    <button class="tab active" data-view="upcoming">Próximos <span class="count" id="cnt-upcoming">0</span></button>
+    <button class="tab" data-view="published">Publicados <span class="count" id="cnt-published">0</span></button>
+    <button class="tab" data-view="calendar">Calendario</button>
+  </nav>
+
+  <!-- SEARCH -->
+  <div class="search-row" id="searchRow">
+    <div class="search-box">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      <input type="text" id="search" placeholder="Buscar por título o palabra clave...">
+    </div>
+  </div>
+
+  <!-- CONTENT -->
+  <main id="content"></main>
+
+</div>
+
+<!-- MODAL -->
+<div class="modal-backdrop" id="modal">
+  <div class="modal">
+    <h2 id="modalTitle">Agregar video</h2>
+    <div class="modal-sub" id="modalSub">Llena los datos del video. El link de Drive es obligatorio.</div>
+
+    <div class="field">
+      <label>Título del video *</label>
+      <input type="text" id="f-title" placeholder="Ej: Bulto en el abdomen: ¿cuándo preocuparte?">
+    </div>
+
+    <div class="field-row">
+      <div class="field">
+        <label>Fecha de publicación *</label>
+        <input type="date" id="f-date">
+      </div>
+      <div class="field">
+        <label>Hora</label>
+        <input type="time" id="f-time" value="19:00">
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Link de Google Drive *</label>
+      <input type="url" id="f-link" placeholder="https://drive.google.com/file/d/...">
+      <div class="field-help">Pega el link del video en Drive. Asegúrate que esté configurado como "Cualquier persona con el link puede ver".</div>
+    </div>
+
+    <div class="field">
+      <label>Plataformas</label>
+      <div class="checkbox-group" id="f-platforms">
+        <label class="checkbox-label" data-platform="instagram"><input type="checkbox" value="instagram"> Instagram</label>
+        <label class="checkbox-label" data-platform="facebook"><input type="checkbox" value="facebook"> Facebook</label>
+        <label class="checkbox-label" data-platform="tiktok"><input type="checkbox" value="tiktok"> TikTok</label>
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Copy para redes</label>
+      <textarea id="f-copy" placeholder="Texto que se publicará junto al video..."></textarea>
+      <div class="char-counter"><span id="copyCount">0</span> caracteres</div>
+    </div>
+
+    <div class="field">
+      <label>Hashtags</label>
+      <textarea id="f-hashtags" placeholder="#Hernia #SaludDigestiva #DraGiselleCastillo" style="min-height: 70px;"></textarea>
+    </div>
+
+    <div class="modal-footer">
+      <button class="btn" id="btnCancel">Cancelar</button>
+      <div style="display: flex; gap: 8px;">
+        <button class="btn" id="btnDelete" style="display:none; color: var(--accent); border-color: var(--accent);">Eliminar</button>
+        <button class="btn btn-primary" id="btnSave">Guardar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<script>
+(function() {
+  const STORAGE_KEY = 'giselle_calendar_videos';
+  const MESES = ['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
+  const MESES_CORTOS = ['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'];
+  const DOW = ['domingo','lunes','martes','miércoles','jueves','viernes','sábado'];
+  const DOW_SHORT = ['Dom','Lun','Mar','Mié','Jue','Vie','Sáb'];
+
+  let videos = [];
+  let editingId = null;
+  let currentView = 'upcoming';
+  let searchTerm = '';
+  let calMonth = new Date().getMonth();
+  let calYear = new Date().getFullYear();
+
+  // Defaults: hoy = 2026-05-21
+  const DEFAULTS = [
+    {
+      id: 'v1',
+      title: 'Bulto en el abdomen: ¿cuándo preocuparte?',
+      date: '2026-05-21',
+      time: '19:00',
+      link: '',
+      platforms: ['instagram','facebook','tiktok'],
+      copy: '¿Te salió un bulto en el abdomen? 🚨\n\nNo asumas lo peor, pero tampoco lo ignores. No todo bulto es hernia, pero si lo es, hay 3 preguntas clave que debes hacerte.\n\n👉 ¿Duele?\n👉 ¿Está creciendo?\n👉 ¿Se queda afuera y no regresa?\n\nSi duele intensamente, cambia de color o hay náusea y vómito, puede ser una urgencia médica.\n\nLas hernias tienen solución. El error está en esperar a que se complique.\n\nComenta HERNIA y te explico cuándo se vuelve urgente. 💬',
+      hashtags: '#Hernia #SaludDigestiva #CirugíaGeneral #DraGiselleCastillo #SaludAbdominal #CDMX'
+    },
+    {
+      id: 'v2',
+      title: 'Estreñimiento crónico: cuando el problema no es el intestino',
+      date: '2026-05-22',
+      time: '19:00',
+      link: '',
+      platforms: ['instagram','facebook','tiktok'],
+      copy: '¿Tardas más de 10 minutos en el baño? Esto NO es normal. 🚽\n\nHay personas que toman fibra, agua, laxantes… y aun así sienten que no pueden evacuar bien. Muchas veces el problema no es el intestino — es cómo trabajan los músculos al evacuar.\n\nExisten estudios especializados que encuentran la causa real:\n✔️ Prueba de expulsión de balón\n✔️ Manometría anorrectal\n✔️ Tránsito colónico\n✔️ Defecografía\n\nSi llevas años con estreñimiento y nada te funciona, no estás sola y hay solución.\n\nComenta AYUDA y te orientamos. 💬',
+      hashtags: '#Estreñimiento #SaludDigestiva #PisoPélvico #DraGiselleCastillo #Coloproctología'
+    },
+    {
+      id: 'v3',
+      title: 'Masaje abdominal: cómo desinflamarte sin medicamento',
+      date: '2026-05-23',
+      time: '12:00',
+      link: '',
+      platforms: ['instagram','facebook','tiktok'],
+      copy: 'Si estás inflamada, no siempre necesitas tomar algo. A veces solo necesitas ayudar a tu abdomen a relajarse. ✋\n\nGuía rápida:\n1️⃣ Respira lento (si tú estás tensa, tu abdomen también)\n2️⃣ Presión suave, no agresiva\n3️⃣ Sigue el recorrido del colon: empieza abajo a la derecha, sube, cruza a la izquierda y baja\n4️⃣ Calor tibio si te relaja\n\n⚠️ Si hay dolor fuerte, fiebre, vómito o abdomen duro: NO masajes, busca atención.\n\nGuarda este video para cuando te sientas inflamada 📌\n\nComenta MASAJE si quieres la versión paso a paso. 💬',
+      hashtags: '#Inflamación #SaludDigestiva #MasajeAbdominal #DraGiselleCastillo'
+    },
+    {
+      id: 'v4',
+      title: 'Antes de operarte: las preguntas que sí debes hacer',
+      date: '2026-05-24',
+      time: '18:00',
+      link: '',
+      platforms: ['instagram','facebook','tiktok'],
+      copy: 'La palabra "cirugía" suena a película de terror, pero la realidad es mucho más ordenada. 🎬\n\nEl miedo casi siempre viene de no saber qué va a pasar. Por eso, antes de operarte pregunta:\n\n❓ ¿Qué me van a hacer exactamente?\n❓ ¿Cuánto dura el procedimiento?\n❓ ¿Qué tipo de anestesia usarán?\n❓ ¿Qué síntomas posteriores serían señal de alarma?\n\nUna cirugía no se decide desde el pánico. Se decide con información. ✅\n\nNo necesitas ser valiente. Necesitas estar bien informado.\n\nComenta MIEDO y te paso la lista completa de preguntas. 💬',
+      hashtags: '#Cirugía #SaludInformada #DraGiselleCastillo #PreguntasMédicas'
+    },
+    {
+      id: 'v5',
+      title: 'Gastritis: por qué el omeprazol no es la solución',
+      date: '2026-05-25',
+      time: '19:00',
+      link: '',
+      platforms: ['instagram','facebook','tiktok'],
+      copy: '¿Vives a punta de omeprazol? Estás tapando el incendio, no apagándolo. 🔥\n\nAntes de comprar más pastillas, esto es lo que yo haría:\n\n1️⃣ Ordenar horarios → no dejar pasar 6 horas sin comer\n2️⃣ Comidas más pequeñas y frecuentes\n3️⃣ Detectar TUS disparadores reales (no copies dietas ajenas)\n4️⃣ No automedicarte por meses → estudia la causa: reflujo, H. pylori, úlcera, vesícula\n\nLa gastritis no se maneja adivinando. Se maneja encontrando qué la provoca. 🎯\n\nComenta GASTRITIS y te paso las señales que indican que ya necesitas evaluación médica. 💬',
+      hashtags: '#Gastritis #SaludDigestiva #Omeprazol #DraGiselleCastillo #HelicobacterPylori'
+    }
+  ];
+
+  // STORAGE (localStorage - funciona en cualquier hosting)
+  function loadVideos() {
+    try {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if (raw) {
+        videos = JSON.parse(raw);
+      } else {
+        videos = DEFAULTS;
+        saveVideos();
+      }
+    } catch (e) {
+      console.error('Error cargando:', e);
+      videos = DEFAULTS;
+      try { saveVideos(); } catch(e2) {}
+    }
+  }
+  function saveVideos() {
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(videos));
+      return true;
+    } catch (e) {
+      console.error('Error guardando:', e);
+      showToast('Error al guardar', 'error');
+      return false;
+    }
+  }
+
+  // HELPERS
+  function todayISO() {
+    const d = new Date();
+    return d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0');
+  }
+  function formatDate(iso) {
+    const [y,m,d] = iso.split('-').map(Number);
+    const dt = new Date(y, m-1, d);
+    return {
+      day: d,
+      month: MESES[m-1],
+      weekday: DOW[dt.getDay()],
+      year: y
+    };
+  }
+  function formatTime(t) {
+    const [h,m] = t.split(':').map(Number);
+    const period = h >= 12 ? 'PM' : 'AM';
+    const h12 = h % 12 || 12;
+    return `${h12}:${String(m).padStart(2,'0')} ${period}`;
+  }
+  function getStatus(iso) {
+    const t = todayISO();
+    if (iso === t) return 'hoy';
+    if (iso < t) return 'publicado';
+    return 'programado';
+  }
+  function nextId() {
+    let n = 1;
+    while (videos.find(v => v.id === 'v' + n)) n++;
+    return 'v' + n;
+  }
+  function escapeHtml(s) {
+    if (!s) return '';
+    return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  }
+
+  // ICONS
+  const ICONS = {
+    instagram: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>',
+    facebook: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>',
+    tiktok: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5.8 20.1a6.34 6.34 0 0 0 10.86-4.43V8.43a8.16 8.16 0 0 0 4.77 1.52V6.49a4.85 4.85 0 0 1-1.84-.2z"/></svg>'
+  };
+
+  // STATS
+  function renderStats() {
+    const today = todayISO();
+    const total = videos.length;
+    const upcoming = videos.filter(v => v.date >= today).length;
+    const published = videos.filter(v => v.date < today).length;
+    const todayCount = videos.filter(v => v.date === today).length;
+
+    document.getElementById('stats').innerHTML = `
+      <div class="stat">
+        <div class="stat-num">${total}</div>
+        <div class="stat-label">Total videos</div>
+      </div>
+      <div class="stat stat-accent">
+        <div class="stat-num">${todayCount}</div>
+        <div class="stat-label">Publicando hoy</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">${upcoming}</div>
+        <div class="stat-label">Por publicar</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">${published}</div>
+        <div class="stat-label">Ya publicados</div>
+      </div>
+    `;
+
+    document.getElementById('cnt-upcoming').textContent = upcoming;
+    document.getElementById('cnt-published').textContent = published;
+  }
+
+  // CARD RENDER
+  function renderCard(v) {
+    const dt = formatDate(v.date);
+    const status = getStatus(v.date);
+    const isToday = status === 'hoy';
+    const platforms = (v.platforms || []).map(p => `<span class="platform" title="${p}">${ICONS[p] || ''}</span>`).join('');
+
+    const statusLabel = { hoy: 'Publicando HOY', publicado: 'Publicado', programado: 'Programado' }[status];
+    const num = videos.indexOf(v) + 1;
+
+    const linkBtn = v.link
+      ? `<a class="btn btn-sm" href="${escapeHtml(v.link)}" target="_blank" rel="noopener">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+          Ver video
+         </a>`
+      : `<button class="btn btn-sm" onclick="window._app.edit('${v.id}')" style="color: var(--accent); border-color: var(--accent);">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          Falta link
+         </button>`;
+
+    return `
+      <article class="card ${isToday ? 'today' : ''} ${status === 'publicado' ? 'published' : ''}" data-id="${v.id}">
+        <div class="card-top">
+          <div>
+            <div class="video-num">Video ${String(num).padStart(2,'0')}</div>
+          </div>
+          <div class="card-actions">
+            <button class="btn btn-ghost btn-icon" onclick="window._app.edit('${v.id}')" title="Editar">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <h3 class="card-title">${escapeHtml(v.title)}</h3>
+
+        <div class="date-block">
+          <div class="date-day">${dt.day}</div>
+          <div class="date-info">
+            <div class="date-month">${dt.month}</div>
+            <div class="date-weekday">${dt.weekday}</div>
+          </div>
+          <div class="date-time">${formatTime(v.time)}</div>
+        </div>
+
+        <div class="status-row">
+          <span class="status ${status}"><span class="status-dot"></span>${statusLabel}</span>
+          <div class="platforms">${platforms}</div>
+        </div>
+
+        <div class="card-buttons">
+          ${linkBtn}
+          <button class="btn btn-sm" onclick="window._app.copyText('${v.id}')">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            Copiar copy
+          </button>
+        </div>
+
+        <div class="copy-section">
+          <button class="copy-toggle" onclick="window._app.toggleCopy('${v.id}')">
+            <span>Ver copy completo</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="copy-body" id="copy-${v.id}">
+            <div class="copy-text">${escapeHtml(v.copy)}</div>
+            ${v.hashtags ? `<div class="hashtags">${escapeHtml(v.hashtags)}</div>` : ''}
+          </div>
+        </div>
+      </article>
+    `;
+  }
+
+  // RENDER VIEWS
+  function render() {
+    renderStats();
+    const content = document.getElementById('content');
+    const searchRow = document.getElementById('searchRow');
+
+    if (currentView === 'calendar') {
+      searchRow.style.display = 'none';
+      content.innerHTML = renderCalendar();
+      attachCalendarHandlers();
+      return;
+    }
+
+    searchRow.style.display = '';
+    const today = todayISO();
+    let filtered = videos.filter(v => {
+      if (currentView === 'upcoming') return v.date >= today;
+      if (currentView === 'published') return v.date < today;
+      return true;
+    });
+
+    if (searchTerm) {
+      const t = searchTerm.toLowerCase();
+      filtered = filtered.filter(v =>
+        (v.title || '').toLowerCase().includes(t) ||
+        (v.copy || '').toLowerCase().includes(t) ||
+        (v.hashtags || '').toLowerCase().includes(t)
+      );
+    }
+
+    filtered.sort((a,b) => {
+      if (currentView === 'published') {
+        return b.date.localeCompare(a.date) || b.time.localeCompare(a.time);
+      }
+      return a.date.localeCompare(b.date) || a.time.localeCompare(b.time);
+    });
+
+    if (filtered.length === 0) {
+      content.innerHTML = `
+        <div class="empty-state">
+          <h3>${searchTerm ? 'Sin resultados' : (currentView === 'upcoming' ? 'No hay videos próximos' : 'Aún no hay publicados')}</h3>
+          <p>${searchTerm ? 'Prueba con otra palabra clave' : 'Agrega un video con el botón de arriba'}</p>
+        </div>
+      `;
+    } else {
+      content.innerHTML = '<div class="cards">' + filtered.map(renderCard).join('') + '</div>';
+    }
+  }
+
+  // CALENDAR
+  function renderCalendar() {
+    const first = new Date(calYear, calMonth, 1);
+    const last = new Date(calYear, calMonth + 1, 0);
+    const startDow = first.getDay();
+    const daysInMonth = last.getDate();
+    const today = todayISO();
+
+    let cells = '';
+    for (let i = 0; i < startDow; i++) cells += '<div class="cal-day empty"></div>';
+    for (let d = 1; d <= daysInMonth; d++) {
+      const iso = `${calYear}-${String(calMonth+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
+      const dayVideos = videos.filter(v => v.date === iso);
+      const isToday = iso === today;
+      cells += `
+        <div class="cal-day ${isToday ? 'today' : ''}">
+          <div class="cal-day-num">${d}</div>
+          ${dayVideos.map(v => `<div class="cal-event ${v.date < today ? 'pub' : ''}" onclick="window._app.edit('${v.id}')" title="${escapeHtml(v.title)}">${escapeHtml(v.title)}</div>`).join('')}
+        </div>
+      `;
+    }
+
+    return `
+      <div class="calendar">
+        <div class="cal-header">
+          <div class="cal-month">${MESES[calMonth].charAt(0).toUpperCase() + MESES[calMonth].slice(1)} ${calYear}</div>
+          <div style="display:flex; gap:6px;">
+            <button class="btn btn-icon" id="calPrev"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg></button>
+            <button class="btn btn-sm" id="calToday">Hoy</button>
+            <button class="btn btn-icon" id="calNext"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></button>
+          </div>
+        </div>
+        <div class="cal-grid">
+          ${DOW_SHORT.map(d => `<div class="cal-dow">${d}</div>`).join('')}
+          ${cells}
+        </div>
+      </div>
+    `;
+  }
+
+  function attachCalendarHandlers() {
+    document.getElementById('calPrev').onclick = () => {
+      calMonth--;
+      if (calMonth < 0) { calMonth = 11; calYear--; }
+      render();
+    };
+    document.getElementById('calNext').onclick = () => {
+      calMonth++;
+      if (calMonth > 11) { calMonth = 0; calYear++; }
+      render();
+    };
+    document.getElementById('calToday').onclick = () => {
+      const d = new Date();
+      calMonth = d.getMonth();
+      calYear = d.getFullYear();
+      render();
+    };
+  }
+
+  // TOAST
+  function showToast(msg, type = '') {
+    const el = document.getElementById('toast');
+    el.textContent = msg;
+    el.className = 'toast show ' + type;
+    setTimeout(() => { el.className = 'toast ' + type; }, 2500);
+  }
+
+  // MODAL
+  function openModal(id = null) {
+    editingId = id;
+    const modal = document.getElementById('modal');
+    const title = document.getElementById('modalTitle');
+    const sub = document.getElementById('modalSub');
+    const delBtn = document.getElementById('btnDelete');
+
+    if (id) {
+      const v = videos.find(x => x.id === id);
+      if (!v) return;
+      title.textContent = 'Editar video';
+      sub.textContent = 'Modifica los datos y guarda.';
+      document.getElementById('f-title').value = v.title || '';
+      document.getElementById('f-date').value = v.date || '';
+      document.getElementById('f-time').value = v.time || '19:00';
+      document.getElementById('f-link').value = v.link || '';
+      document.getElementById('f-copy').value = v.copy || '';
+      document.getElementById('f-hashtags').value = v.hashtags || '';
+      document.querySelectorAll('#f-platforms .checkbox-label').forEach(label => {
+        const platform = label.dataset.platform;
+        const checked = (v.platforms || []).includes(platform);
+        label.classList.toggle('checked', checked);
+        label.querySelector('input').checked = checked;
+      });
+      delBtn.style.display = '';
+    } else {
+      title.textContent = 'Agregar video';
+      sub.textContent = 'Llena los datos del video. El link de Drive es obligatorio.';
+      document.getElementById('f-title').value = '';
+      document.getElementById('f-date').value = todayISO();
+      document.getElementById('f-time').value = '19:00';
+      document.getElementById('f-link').value = '';
+      document.getElementById('f-copy').value = '';
+      document.getElementById('f-hashtags').value = '';
+      document.querySelectorAll('#f-platforms .checkbox-label').forEach(label => {
+        const checked = ['instagram','facebook','tiktok'].includes(label.dataset.platform);
+        label.classList.toggle('checked', checked);
+        label.querySelector('input').checked = checked;
+      });
+      delBtn.style.display = 'none';
+    }
+    updateCopyCount();
+    modal.classList.add('open');
+  }
+  function closeModal() {
+    document.getElementById('modal').classList.remove('open');
+    editingId = null;
+  }
+  function updateCopyCount() {
+    document.getElementById('copyCount').textContent = document.getElementById('f-copy').value.length;
+  }
+
+  function saveVideo() {
+    const title = document.getElementById('f-title').value.trim();
+    const date = document.getElementById('f-date').value;
+    const time = document.getElementById('f-time').value || '19:00';
+    const link = document.getElementById('f-link').value.trim();
+    const copy = document.getElementById('f-copy').value;
+    const hashtags = document.getElementById('f-hashtags').value;
+    const platforms = Array.from(document.querySelectorAll('#f-platforms .checkbox-label.checked'))
+      .map(l => l.dataset.platform);
+
+    if (!title) { showToast('Falta el título', 'error'); return; }
+    if (!date) { showToast('Falta la fecha', 'error'); return; }
+
+    if (editingId) {
+      const idx = videos.findIndex(v => v.id === editingId);
+      if (idx >= 0) {
+        videos[idx] = { ...videos[idx], title, date, time, link, copy, hashtags, platforms };
+      }
+      showToast('Video actualizado', 'success');
+    } else {
+      videos.push({ id: nextId(), title, date, time, link, copy, hashtags, platforms });
+      showToast('Video agregado', 'success');
+    }
+
+    saveVideos();
+    closeModal();
+    render();
+  }
+
+  function deleteVideo() {
+    if (!editingId) return;
+    if (!confirm('¿Eliminar este video del calendario?')) return;
+    videos = videos.filter(v => v.id !== editingId);
+    saveVideos();
+    closeModal();
+    render();
+    showToast('Video eliminado', 'success');
+  }
+
+  // PUBLIC API
+  window._app = {
+    edit: openModal,
+    toggleCopy: (id) => {
+      const body = document.getElementById('copy-' + id);
+      const toggle = body.previousElementSibling;
+      body.classList.toggle('open');
+      toggle.classList.toggle('open');
+    },
+    copyText: async (id) => {
+      const v = videos.find(x => x.id === id);
+      if (!v) return;
+      const text = (v.copy || '') + (v.hashtags ? '\n\n' + v.hashtags : '');
+      try {
+        await navigator.clipboard.writeText(text);
+        showToast('Copy copiado al portapapeles', 'success');
+      } catch(e) {
+        try {
+          const ta = document.createElement('textarea');
+          ta.value = text;
+          ta.style.position = 'fixed';
+          ta.style.left = '-9999px';
+          document.body.appendChild(ta);
+          ta.select();
+          document.execCommand('copy');
+          document.body.removeChild(ta);
+          showToast('Copy copiado', 'success');
+        } catch(e2) {
+          showToast('No se pudo copiar', 'error');
+        }
+      }
+    }
+  };
+
+  // EXPORT CSV
+  function exportCSV() {
+    const headers = ['#','Título','Fecha','Hora','Link','Plataformas','Copy','Hashtags','Estado'];
+    const today = todayISO();
+    const rows = videos.map((v, i) => [
+      i+1, v.title, v.date, v.time, v.link || '',
+      (v.platforms || []).join(', '),
+      v.copy || '', v.hashtags || '',
+      v.date < today ? 'Publicado' : (v.date === today ? 'Hoy' : 'Programado')
+    ]);
+    const csv = [headers, ...rows].map(row =>
+      row.map(c => `"${String(c).replace(/"/g,'""')}"`).join(',')
+    ).join('\n');
+    const blob = new Blob(['\ufeff' + csv], { type: 'text/csv;charset=utf-8;' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `calendario-giselle-${todayISO()}.csv`;
+    a.click();
+    URL.revokeObjectURL(url);
+    showToast('CSV descargado', 'success');
+  }
+
+  // EVENTS
+  document.getElementById('btnAdd').onclick = () => openModal();
+  document.getElementById('btnSave').onclick = saveVideo;
+  document.getElementById('btnCancel').onclick = closeModal;
+  document.getElementById('btnDelete').onclick = deleteVideo;
+  document.getElementById('btnExport').onclick = exportCSV;
+  document.getElementById('search').oninput = (e) => { searchTerm = e.target.value; render(); };
+  document.getElementById('f-copy').oninput = updateCopyCount;
+
+  document.querySelectorAll('#tabs .tab').forEach(tab => {
+    tab.onclick = () => {
+      document.querySelectorAll('#tabs .tab').forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      currentView = tab.dataset.view;
+      render();
+    };
+  });
+
+  document.querySelectorAll('#f-platforms .checkbox-label').forEach(label => {
+    label.onclick = (e) => {
+      e.preventDefault();
+      label.classList.toggle('checked');
+      const input = label.querySelector('input');
+      input.checked = label.classList.contains('checked');
+    };
+  });
+
+  document.getElementById('modal').onclick = (e) => {
+    if (e.target.id === 'modal') closeModal();
+  };
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeModal();
+  });
+
+  // INIT
+  (function init() {
+    loadVideos();
+    render();
+  })();
+})();
+</script>
